@@ -1,0 +1,34 @@
+//Code was ran and tested in piano tiles, to determine where to click and what color to click on I determined through playing the game that the color of tiles was black, so i set the rgb value to 0
+//As for detecting what position needed to be clicked i ran these two pieces of code
+import pyautogui
+pyautogui.displayMousePosition();
+//these two lines gave me x and y coordinates of where the mouse was pointed to and the rgb value it was pointed at.
+//I set the mouse to the middle of each tile line and got this result
+#Title 1 Position X:  330 Y:  795 RGB: ( 76,  79, 115)
+#Title 2 Position X:  425 Y:  786 RGB: ( 77,  80, 115)
+#Title 3 Position X:  556 Y:  785 RGB: ( 77,  80, 115)
+#Title 4 Position X:  643 Y:  777 RGB: ( 81,  84, 116)
+
+//now i know where my mouse to click to and what color needed to be recognised
+from pyautogui import *
+import pyautogui
+import time
+import keyboard
+import random
+import win32api, win32con
+
+def click(x,y):
+    win32api.SetCursorPos((x,y))
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0) //moves my mouse cursor into position without me touching it
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0)
+
+while keyboard.is_pressed('q') == False:
+    
+    if pyautogui.pixel(330, 795)[0] == 0: //click at position x,y rgb value 0
+        click(330, 795) 
+    if pyautogui.pixel(425, 786)[0] == 0:
+        click(425, 786)
+    if pyautogui.pixel(556, 785)[0] == 0:
+        click(556, 785)
+    if pyautogui.pixel(643, 777)[0] == 0:
+        click(643, 777)
